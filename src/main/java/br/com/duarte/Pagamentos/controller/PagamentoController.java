@@ -26,7 +26,7 @@ public class PagamentoController {
         return service.findAllPagamento(pageable);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<PagamentoDto> findById(@PathVariable @NotNull Long id) {
         PagamentoDto dto = service.findByIdPagamento(id);
         return ResponseEntity.ok(dto);
@@ -39,13 +39,13 @@ public class PagamentoController {
         return ResponseEntity.created(endereco).body(pagamento);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<PagamentoDto> update(@PathVariable @NotNull Long id, @RequestBody @Valid PagamentoDto dto) {
         PagamentoDto atualizado = service.updatePagamento(id, dto);
         return ResponseEntity.ok(atualizado);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<PagamentoDto> delete(@PathVariable @NotNull Long id) {
         service.deletePagamento(id);
         return ResponseEntity.noContent().build();
